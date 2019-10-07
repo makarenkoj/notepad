@@ -1,4 +1,4 @@
-#Encoding:UTF-8
+# encoding: UTF-8
 
 if Gem.win_platform?
   Encoding.default_external = Encoding.find(Encoding.locale_charmap)
@@ -14,20 +14,18 @@ require_relative 'lib/memo'
 require_relative 'lib/link'
 require_relative 'lib/task'
 
-
 puts 'Привет, я твой блокнот!'
+puts 'Записываю новые записи в базу SQLite'
 puts
 puts 'Что хотите записать в блокнот?'
 
 choices = Post.post_types.keys
 
 choice = -1
-
 until choice >= 0 && choice < choices.size
   choices.each_with_index do |type, index|
     puts "\t#{index}. #{type}"
   end
-
   choice = gets.to_i
 end
 
@@ -37,4 +35,4 @@ entry.read_from_console
 
 rowid = entry.save_to_db
 
-puts "Ваша запись сохранена, id = #{rowid}"
+puts "Запись сохранена в базе, id = #{rowid}"
